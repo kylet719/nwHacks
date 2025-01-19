@@ -1,9 +1,15 @@
 from flask import Flask, request, url_for, session, redirect, render_template
 from spotify_auth import create_spotify_oauth, get_spotify_client
+from flask_cors import CORS
+import base64
+from PIL import Image
+from io import BytesIO
+from .models.emotion.emotions_recognition import retrieve
 
 
 # Initialize Flask with custom template and static folders
 app = Flask(__name__)
+CORS(app)
 app.secret_key = 'your-secret-key'  # Replace with a real secret key
 
 
@@ -52,6 +58,27 @@ def create_playlist():
     
     except Exception as e:
         return f"Error: {str(e)}"
+    
+@app.route('/processIMG', methods=['POST'])
+def process_img():
+    try:
+        data = request.get_json()
+        b64_string = data.get('imageSrc', '')
+        image_code = base64.b64decode(b64_string.replace("data:image/webp;base64,", ""))
+        image_stream = BytesIO(image_code)
+        image = Image.open(image_stream).convert("RGB")
+        jpg_filename = "face.jpg"
+        image.save(jpg_filename, "jpeg")
+
+        emotion, top_emotion = retrieve(jpg_filename)
+
+        print(emotion)
+        print(top_emotion)
+
+        return {'message': 'Image successfully converted to JPEG and emotions analyzed'}, 200
+
+    except Exception as e:
+        print(f'Error: {str(e)}')
 
 if __name__ == '__main__':
-    app.run(port=8000, debug=True)
+    app.run(port=5000, debug=True)
