@@ -4,7 +4,7 @@ from flask_cors import CORS
 import base64
 from PIL import Image
 from io import BytesIO
-from models.emotion.emotions_recognition import retrieve
+from .models.emotion.emotions_recognition import retrieve
 
 
 # Initialize Flask with custom template and static folders
@@ -72,13 +72,13 @@ def process_img():
 
         emotion, top_emotion = retrieve(jpg_filename)
 
-        print("HELLO", emotion)
+        print(emotion)
         print(top_emotion)
 
-        return {'message': 'Image successfully saved as WebP and converted to JPEG'}, 200
+        return {'message': 'Image successfully converted to JPEG and emotions analyzed'}, 200
 
     except Exception as e:
         print(f'Error: {str(e)}')
 
 if __name__ == '__main__':
-    app.run(port=8000, debug=True)
+    app.run(port=5000, debug=True)

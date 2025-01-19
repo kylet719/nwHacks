@@ -13,7 +13,7 @@ const CustomWebcam = () => {
         const imageSrc = webcamRef.current.getScreenshot();
         setImgSrc(imageSrc);
 
-        const response = await fetch('http://127.0.0.1:5000/api/processIMG', {
+        const response = await fetch('http://127.0.0.1:5000/processIMG', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
