@@ -1,14 +1,9 @@
 import './App.css';
-import CustomWebcam from './components/CustomWebcam';
+import Layout from './Layout';
 
 const App = () => {
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <CustomWebcam></CustomWebcam>
-      </header>
-    </div>
+    <Layout />
   );
 }
 
