@@ -1,9 +1,14 @@
 from flask import Flask, request, url_for, session, redirect, render_template
 from spotify_auth import create_spotify_oauth, get_spotify_client
+from flask_cors import CORS
+import base64
+from PIL import Image
+from io import BytesIO
 
 
 # Initialize Flask with custom template and static folders
 app = Flask(__name__)
+CORS(app)
 app.secret_key = 'your-secret-key'  # Replace with a real secret key
 
 
@@ -52,6 +57,23 @@ def create_playlist():
     
     except Exception as e:
         return f"Error: {str(e)}"
+    
+@app.route('/processIMG', methods=['POST'])
+def process_img():
+    try:
+        data = request.get_json()
+        b64_string = data.get('imageSrc', '')
+        image_code = base64.b64decode(b64_string.replace("data:image/webp;base64,", ""))
+        image_stream = BytesIO(image_code)
+        image = Image.open(image_stream).convert("RGB")
+        image.save("face.jpg", "jpeg")
+        jpg_image = Image.open("face.jpg")
+        print("Image Format:", jpg_image.format)
+
+        return {'message': 'Image successfully saved as WebP and converted to JPEG'}, 200
+
+    except Exception as e:
+        print(f'Error: {str(e)}')
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
