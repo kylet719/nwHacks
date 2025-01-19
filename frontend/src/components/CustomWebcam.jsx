@@ -1,5 +1,5 @@
 import Webcam from "react-webcam";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState } from "react";
 
 const CustomWebcam = () => {
   const webcamRef = useRef(null);
@@ -32,11 +32,6 @@ const CustomWebcam = () => {
     }
   };
 
-  // const capture = useCallback(() => {
-  //   const imageSrc = webcamRef.current.getScreenshot();
-  //   setImgSrc(imageSrc);
-  // }, [webcamRef])
-
   const retake = () => {
     setImgSrc(null);
   };
@@ -46,7 +41,7 @@ const CustomWebcam = () => {
       {imgSrc ? (
         <img src={imgSrc} alt="webcam" />
       ) : (
-        <Webcam height={600} width={600} ref={webcamRef} />
+        <Webcam height={600} width={600} ref={webcamRef} mirrored={true}/>
       )}
       <div className="btn-container">
         {imgSrc ? (

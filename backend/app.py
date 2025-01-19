@@ -4,6 +4,7 @@ from flask_cors import CORS
 import base64
 from PIL import Image
 from io import BytesIO
+from models.emotion.emotions_recognition import retrieve
 
 
 # Initialize Flask with custom template and static folders
@@ -66,9 +67,13 @@ def process_img():
         image_code = base64.b64decode(b64_string.replace("data:image/webp;base64,", ""))
         image_stream = BytesIO(image_code)
         image = Image.open(image_stream).convert("RGB")
-        image.save("face.jpg", "jpeg")
-        jpg_image = Image.open("face.jpg")
-        print("Image Format:", jpg_image.format)
+        jpg_filename = "face.jpg"
+        image.save(jpg_filename, "jpeg")
+
+        emotion, top_emotion = retrieve(jpg_filename)
+
+        print("HELLO", emotion)
+        print(top_emotion)
 
         return {'message': 'Image successfully saved as WebP and converted to JPEG'}, 200
 
