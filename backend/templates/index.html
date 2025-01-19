@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mood Music - Spotify Playlist Generator</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Mood Music</h1>
+      <p class="description">
+        Experience the power of AI-driven music curation. Our app analyzes your
+        mood through facial recognition and creates the perfect Spotify playlist
+        to match your emotions.
+      </p>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">🎵</div>
+          <p>AI-Powered</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">😊</div>
+          <p>Emotion Detection</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎯</div>
+          <p>Personalized</p>
+        </div>
+      </div>
+
+      <a href="{{ url_for('login') }}" class="login-button pulse">
+        Login with Spotify
+      </a>
+    </div>
+  </body>
+</html>
