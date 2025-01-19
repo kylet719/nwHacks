@@ -1,7 +1,15 @@
 import os
+import sys
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv
+
+# feels very hacky
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../")))
+
+from backend.database.db import get_songs_by_mood  # Now you can use absolute import
+
+
 
 def get_spotify_client():
     """Initialize and return a Spotify client using credentials from .env"""
@@ -46,13 +54,16 @@ def find_spotify_tracks(songs_list):
     
     return results
 
-def create_playlist_test():
-    songs = [
-        {'title': 'Blinding Lights', 'artist': 'The Weeknd'},
-        {'title': 'Shape of You (Deluxe)', 'artist': 'Ed Sheeran'},
-        {'title': 'Tweaker', 'artist': 'Gelo'},
-        {'title': 'Streetcar', 'artist': 'Daniel Caesar'},
-    ]
+def create_playlist_test(mood, playlist_name):
+
+    # old_songs = [
+    #     {'title': 'Blinding Lights', 'artist': 'The Weeknd'},
+    #     {'title': 'Shape of You (Deluxe)', 'artist': 'Ed Sheeran'},
+    #     {'title': 'Tweaker', 'artist': 'Gelo'},
+    #     {'title': 'Streetcar', 'artist': 'Daniel Caesar'},
+    # ]
+
+    songs = get_songs_by_mood(mood)
 
     sp = get_spotify_client()
     user_info = sp.current_user()
@@ -70,7 +81,7 @@ def create_playlist_test():
     # Example: Create a playlist
     playlist = sp.user_playlist_create(
         user_info['id'],
-        "My Moodiest playlist 2",
+        playlist_name,
         public=False,
         description="Generated based on mood"
     )
