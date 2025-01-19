@@ -21,3 +21,4 @@ pillow==10.1.0
 python-multipart==0.0.6
 pydantic==2.5.2
 deepface==0.0.70
+tf-keras
