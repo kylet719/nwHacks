@@ -41,23 +41,11 @@ def create_playlist():
        # Get Spotify client
        sp = get_spotify_client()
 
-       create_playlist_test()
-      
+       test_mood = "angry"
+       test_playlist_name = "mad list"
 
-    #   ########### Original TESTING CODE ###########
-
-    #    # Example: Get user info
-    #    user_info = sp.current_user()
+       create_playlist_test(test_mood, test_playlist_name)
       
-    #    # Example: Create a playlist
-    #    playlist = sp.user_playlist_create(
-    #        user_info['id'],
-    #        "My Mood Playlist",
-    #        public=False,
-    #        description="Generated based on mood"
-    #    )
-      
-    #    return f"Created playlist: {playlist['name']}"
        return f"Created playlist"
   
    except Exception as e:
