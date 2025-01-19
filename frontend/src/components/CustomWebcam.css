@@ -1,0 +1,29 @@
+.webcam-div {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column; 
+    height: 100vh;
+    margin-top: -2%;
+}
+
+.image-button {
+    position: absolute;
+    bottom: 6%;
+    left: 50%;
+    width: 250px;
+    transform: translateX(-50%);
+    background: #1db954;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.image-button:hover {
+    background: #4de683;
+    color: black;
+}
