@@ -1,1 +1,7 @@
 .env
+**/.venv
+**/.DS_STORE
+filestructure.txt
+.env
+**/__**
+training/data
