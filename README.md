@@ -8,6 +8,12 @@ A web application that generates personalized Spotify playlists using the Spotif
 - User library access
 - Personalized music recommendations
 
+## Screenshots
+![Mood0](https://github.com/user-attachments/assets/f350a8b6-ab20-49d7-b46c-49824d74427d)
+![Mood1](https://github.com/user-attachments/assets/50412071-296e-497b-8442-9dfb627eef38)
+![Mood2](https://github.com/user-attachments/assets/7a38a177-24ae-4aba-bed8-3a6ecec6749d)
+
+
 ## Tech Stack
 
 ### Backend
